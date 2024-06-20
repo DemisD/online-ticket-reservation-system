@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<div  xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">  
+
+    <header class="main-header"> 
+        <!-- Logo -->
+
+        <a  class="logo bg-yellow">  
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+
+            <span class="logo-mini"><img src="/TRS-war/resources/image/icon.ico"  alt="" /></span>
+            <!-- logo for regular state and mobile devices --> 
+            <span class="logo-lg pull-left"><img src="/TRS-war/resources/image/success.png"  alt="" /><b> Zemen Bus </b>TRS</span>
+        </a>    
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top bg-yellow " role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class=" pull-left" id="navbar-collapse">
+
+                <h3  style="margin-top: 15px; color: white">Zemen Bus Online Ticket Reservation System</h3>   
+
+
+            </div>
+            <div class="navbar-custom-menu"> 
+                <ul class="nav navbar-nav"> 
+                    <h:form  >
+
+                        <div id="banner" class="banner" >
+                      
+                            
+                            <div id="inside_banner" class="inside_banner" style="font-family: 'Cambria'; font-size: 16px; font-weight: bold; margin-top: 15px  ">                   
+                                <u>  
+                                
+                                    <h:commandLink id="cmdLnkEn" value="LogOut" style=" color: #ffffff;  margin-right: 20px"    action="#{loginController.logout3()}"/>
+                                </u> 
+                            </div>
+                        </div>
+                    </h:form>
+                </ul>
+            </div>
+            <!-- Navbar Right Menu -->
+        
+
+        </nav>
+    </header>
+</div>

@@ -1,0 +1,471 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/templates/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    
+
+    <ui:define name="navigaion_content">  
+        <!-- search form -->
+        <!-- search form -->  
+        <ul  class="nav " id="myTab">
+            <!-- search form -->  
+            <li class="treeview">         
+                <a href="../HomePage.xhtml"><i class="fa fa-home"></i><span> Home </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="busPage.xhtml"><i class="fa fa-bus"></i><span> Bus Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="cityPage.xhtml"><i class="fa fa-star"></i><span> City Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="routePage.xhtml"><i class="fa fa-road"></i><span> Rout Registration  </span></a>
+            </li>
+
+            <li class="#{loginController.treeviewUser}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle-o"></i><span> View Schedule  </span></a>
+            </li>
+
+            <li class="#{loginController.treeview}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle"></i><span>  Schedule Registration   </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="ticketReservationPage.xhtml"><i class="fa fa-ticket"></i><span> Ticket Reservation   </span></a>
+            </li>    
+
+            <li class="#{loginController.treeview}">       
+                <a href="../AdminUser.xhtml"><i class="fa fa-user"></i><span> User Registration </span></a>
+            </li>
+            <li class="#{loginController.treeviewUser}">       
+                <a href="../AdminUser.xhtml" ><i class="fa fa-user"></i><span> Profile </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="contactUs.xhtml" ><i class="fa fa-comment"></i><span> Contact Us </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="ReportPage.xhtml"><i class="fa fa-file-o"></i><span> Generate Report</span></a>
+            </li>
+        </ul>  
+
+    </ui:define>
+    <ui:define name="contents">   
+
+
+
+
+
+
+        <h:form id="frmRegisterUI"> 
+
+
+            <p:growl id="growl" showDetail="true" severity="information,fatal" autoUpdate="true" />
+            <h:panelGroup style="border: 0px; background-color: transparent" id="registerUI" >
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3  class="box-title"> <strong>#{scheduleController.title} </strong></h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row"> 
+                            <div class="col-md-12" > 
+                                <h:panelGroup id="pnl" rendered="#{scheduleController.renderdAdmin}">
+                                    <div class="form-horizontal  col-sm-12">   
+
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtScheduledate"  class="control-label col-sm-2" value="Schedule Date" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:calendar id="txtScheduledate"  required="true"
+                                                            value="#{scheduleController.scheduleDate}"
+                                                            navigator="true" 
+                                                            pattern="yyyy/MM/dd"
+                                                            requiredMessage="Schedule Date Is required">
+                                                    <p:ajax event="dateSelect" listener="#{scheduleController.scheduleDateDateEvent}" update="txtScheduledate"/>
+
+                                                </p:calendar>
+                                                <p:message for="txtScheduledate" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtBusNo"  class="control-label col-sm-2" value="Bus Number" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:autoComplete id="txtBusNo"   style="width: 100%;"                                                                                    
+                                                                value="#{scheduleController.bustbl.busNumber}"
+                                                                placeholder="Search Bus " immediate="true"
+                                                                completeMethod="#{scheduleController.searchBusList}" 
+                                                                var="busTblList" itemValue="#{busTblList.busNumber}" itemLabel="#{busTblList}"  
+                                                                emptyMessage="No data " forceSelection="true" required="true" requiredMessage="Insert value" 
+                                                                scrollHeight="200"  >  
+
+                                                    <p:column headerText=" Bus Name" >
+                                                        <h:outputText value="#{busTblList.busName}"/>
+                                                    </p:column>
+                                                    <p:column headerText=" Bus Number" >
+                                                        <h:outputText value="#{busTblList.busNumber}"/>
+                                                    </p:column>
+                                                    <p:ajax  event="itemSelect" listener="#{scheduleController.getSelectBusInfo}" partialSubmit="true"
+                                                             process="@this"  update="@this"/>   
+
+                                                </p:autoComplete>  
+                                                <p:message for="txtBusNo" display="icon"/>
+                                            </div>    
+                                        </div>
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtRout"  class="control-label col-sm-2" value="Route" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:selectOneMenu id="txtRout" 
+                                                                 valueChangeListener="#{scheduleController.changeRouteTypeList}"
+                                                                 value="#{scheduleController.routetbl.routeName}"
+                                                                 required="true" requiredMessage="Section Should not be Empty }"
+                                                                 filter="true" filterMatchMode="startsWith"    
+                                                                 style="width: 100%;" immediate="true" >
+                                                    <f:selectItem  itemLabel="Select One" itemValue="" />
+                                                    <f:selectItems id="elTypee" value="#{scheduleController.typeList}"/>
+
+                                                    <p:ajax process="@this" event="change" update="@this"/>
+                                                </p:selectOneMenu>
+                                                <p:message for="txtRout" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtPrice"  class="control-label col-sm-2" value="Price" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtPrice"  required="true"
+                                                             value="#{scheduleController.tblName.price}"   
+                                                             requiredMessage="required"
+
+                                                             /> 
+                                                <p:message for="txtPrice" display="icon"/>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtDesTime"  class="control-label col-sm-2" value="Depature time" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:calendar id="txtDesTime" 
+                                                            value="#{scheduleController.despatureTime}"
+
+                                                            pattern="HH:mm"
+                                                            required="true" requiredMessage="TimeIs required">
+                                                    <p:ajax event="dateSelect" listener="#{scheduleController.dispatureTimeEvent}" update="txtDesTime"/>
+
+                                                </p:calendar>
+                                                <p:message for="txtDesTime" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtDestinationTime"  class="control-label col-sm-2" value="Destination Time" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+
+                                                <p:calendar id="txtDestinationTime" 
+                                                            value="#{scheduleController.destinationTime}"
+
+                                                            pattern="HH:mm"
+                                                            required="true" requiredMessage="time Is required">
+                                                    <p:ajax event="dateSelect" listener="#{scheduleController.destinationTimeEvent}" update="txtDestinationTime"/>
+                                                </p:calendar>
+                                                <p:message for="txtDestinationTime" display="icon"/>
+                                            </div>    
+                                        </div>   
+
+
+                                    </div>
+                                    <br></br>
+
+
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-md-12 textBoxMargin6px" > 
+                                <br></br>
+                                <div class="form-group textBoxMargin6px" >
+                                    <h:outputLabel   class="control-label col-sm-2" value=""/>
+
+
+
+                                    <div class="col-sm-4" >   
+                                        <!--disabled not important-->
+                                        <p:commandButton rendered="#{scheduleController.renderdAdmin}" id="btnsave" class="btn  btn-block btn-primary col-sm-2"  style="width: 150px;"
+                                                         value="#{scheduleController.saveorUpdateBundle}"
+                                                         action="#{scheduleController.saveUpdate()}"
+                                                         process="@this,pnl " 
+                                                         update=":frmRegisterUI,:frmRegisterUI:tblRoutDetail" 
+                                                         />   
+
+
+
+
+
+
+
+                                    </div>  
+
+                                </div>
+                            </div>
+
+                            <div class="form-group textBoxMargin6px">                                      
+                                <div class="col-sm-12">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"> <strong> All Schedule List  </strong></h3>
+                                    </div>
+                                    <div class="box box-primary"> 
+                                        <p:dataTable  id="tblRoutDetail" 
+                                                      value="#{scheduleController.scheduletblModel}"  resizableColumns="true"
+                                                      var="entityId" rows="25" selectionMode="single"    rowIndexVar="num"
+                                                      selection="#{scheduleController.selectedItem}" rowKey="#{entityId.scheduleId}" 
+                                                      paginator="true" paginatorPosition="bottom" editable="true">
+                                            <p:ajax event="rowSelect" listener="#{scheduleController.getrowData}" update=":frmRegisterUI"  />  
+
+                                            <p:column style="width: 70px;">
+                                                <f:facet name="header">
+                                                    <h:outputText value="No." />
+                                                </f:facet>
+                                                <h:outputText value="#{num+1}"/>
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Date "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.scheduleDate}" >
+                                                    <f:convertDateTime  pattern="dd/MM/yyyy/"/>
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Bus  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.busId.busNumber}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Route  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.routeId.routeName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Price  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.price}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Depature Time  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.despatureTime}" >
+                                                    <f:convertDateTime    pattern="hh:mm"/>
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Destination Time  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.destinationTime}" >
+                                                    <f:convertDateTime   pattern="hh:mm"/>
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Status  "/>
+                                                </f:facet>
+                                                <h:outputText  value="#{entityId.status}" />
+                                            </p:column>
+
+                                            <p:column style="width:20%;" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Action "/>
+                                                </f:facet>
+
+                                                <p:commandButton disabled="#{entityId.status eq 'Expired'}" id="btnDepAddressJL"   onclick="PF('dlalogReservation').show();" 
+                                                                 type="button"  process="@this" update="pnlDialog"  style=" background: #cccccc;"
+                                                                 value="Ticket Reserv"  >  
+                                                    <p:ajax event="click" listener="#{scheduleController.populatScheduleData(entityId)}" update=":frmRegisterUI:pnlDialog, btnDepAddressJL, tblRoutDetail"  />       
+
+                                                </p:commandButton>   
+
+                                                &#160;
+                                                <!--                                                <h:commandLink value="Delete" immediate="true" class="label-danger" 
+                                                                                                               action="{scheduleController.deleteAction(entityId)}" />-->
+
+
+                                                <p:commandButton disabled="#{scheduleController.usertbl.role eq 'User'}" value="Delete" action="#{scheduleController.deleteAction(entityId)}" process="@this" update=":frmRegisterUI:tblRoutDetail" styleClass="ui-button-danger" >
+                                                    <!--<p:confirm header="Confirmation" message="Do you want to delete this record?" icon="pi pi-info-circle"/>-->
+                                                </p:commandButton>
+                                            </p:column>
+                                        </p:dataTable>   
+
+
+                                        <br></br> 
+                                        <br></br>
+                                    </div>
+                                </div>
+
+                            </div>  
+
+
+
+
+
+                            <p:dialog id="dlalogReservation" header="Bus Reservation"  widgetVar="dlalogReservation" height="375" width="950"  showEffect="explode">
+                                <div class="col-md-12" > 
+
+                                    <h:panelGroup id="pnlDialog">
+                                        <div class="form-horizontal  col-sm-12">   
+
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtScheduledate"  class="control-label col-sm-2" value="Date" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtDate2"  
+                                                                 value="#{scheduleController.tblName.scheduleDate}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtDate2" display="icon"/>
+                                                </div>
+                                                <p:outputLabel for="txtBusNo"  class="control-label col-sm-2" value="Bus No." />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtBusNo2"  
+                                                                 value="#{scheduleController.tblName.busId.busNumber}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtBusNo2" display="icon"/>
+                                                </div>    
+                                            </div>
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtRout"  class="control-label col-sm-2" value="Route" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtRout2"  
+                                                                 value="#{scheduleController.tblName.routeId.routeName}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtRout2" display="icon"/>
+                                                </div>
+                                                <p:outputLabel for="txtPrice2"  class="control-label col-sm-2" value="Price" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtPrice2"  
+                                                                 value="#{scheduleController.tblName.price}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtPrice" display="icon"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtDesTime2"  class="control-label col-sm-2" value="Despature time" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtDesTime2"  
+                                                                 value="#{scheduleController.tblName.despatureTime}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtDesTime2" display="icon"/>
+                                                </div>
+                                                <p:outputLabel for="txtDestinationTime2"  class="control-label col-sm-2" value="Destination Time" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+
+                                                    <p:inputText id="txtDestinationTime2"  
+                                                                 value="#{scheduleController.tblName.destinationTime}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtDestinationTime" display="icon"/>
+                                                </div>
+
+                                            </div>  
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtTNo"  class="control-label col-sm-2" value="Ticket No:" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtTNo"  
+                                                                 value="#{scheduleController.ticketReservationTbl.ticketNo}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtTNo" display="icon"/>
+                                                </div>
+
+                                            </div>  
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title"> <strong>Passenger Information  </strong></h3>
+                                            </div>
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtFname"  class="control-label col-sm-2" value="First Name" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtFname"  
+                                                                 value="#{scheduleController.ticketReservationTbl.firstName}" 
+                                                                 validator="#{validatorManagedBean.Text}"                                                                 
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtFname" display="icon"/>
+                                                </div>
+                                                <p:outputLabel for="txtLname"  class="control-label col-sm-2" value="Last Name" />
+                                                <div class="col-sm-4 textBoxMargin6px">
+
+                                                    <p:inputText id="txtLname"  
+                                                                 value="#{scheduleController.ticketReservationTbl.fatherName}" 
+                                                                 validator="#{validatorManagedBean.Text}" 
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtLname" display="icon"/>
+                                                </div>    
+                                            </div>   
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtPhone"  class="control-label col-sm-2" value="Phone No." />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtPhone"  
+                                                                 value="#{scheduleController.ticketReservationTbl.phoneNo}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtPhone" display="icon"/>
+                                                </div>
+                                                <p:outputLabel for="txtSeatNo"  class="control-label col-sm-2" value="Seat No." />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:selectOneMenu id="txtSeatNo" 
+                                                                     valueChangeListener="#{scheduleController.changeRouteSeatNoList}"
+                                                                     value="#{scheduleController.bustblDetal.seatNo}"
+                                                                     required="true" requiredMessage="Seat no should not be Empty }"
+                                                                     filter="true" filterMatchMode="startsWith"      
+                                                                     style="width: 100%;" immediate="true" >
+
+                                                        <f:selectItem itemDisabled="true" itemLabel="Select Seat" />
+                                                        <f:selectItems id="seatNo" value="#{scheduleController.detailLis}"/>
+
+                                                        <p:ajax process="@this" event="change" update="@this"/>
+                                                    </p:selectOneMenu>
+                                                    <p:message for="txtSeatNo" display="icon"/>
+                                                </div>
+
+                                            </div> 
+
+
+                                            <div class="form-horizontal col-md-12"> 
+                                                <p:outputLabel for="txtDpsitno"  class="control-label col-sm-2" value="deposit slipNo " />
+                                                <div class="col-sm-4 textBoxMargin6px">
+                                                    <p:inputText id="txtDpsitno"  
+                                                                 value="#{scheduleController.ticketReservationTbl.dipositSlipNo}"    
+                                                                 requiredMessage="required" /> 
+                                                    <p:message for="txtDpsitno" display="icon"/>
+                                                </div>
+
+                                            </div>   
+
+
+
+                                        </div>
+                                        <br></br>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-md-12 textBoxMargin6px" > 
+                                    <br></br>
+                                    <div class="form-group textBoxMargin6px" >
+                                        <h:outputLabel   class="control-label col-sm-2" value=""/>
+                                        <div class="col-sm-4" >   
+                                            <!--disabled not important-->
+                                            <p:commandButton id="btnsave1"  class="btn  btn-block btn-primary col-sm-2"  style="width: 150px; "
+                                                             value="Reserve"
+                                                             process="@this,dlalogReservation,pnlDialog " 
+                                                             action="#{scheduleController.savePassangerReservation()}"
+                                                             oncomplete="PF('pnlDialog').show();" 
+                                                             update=":frmRegisterUI:pnlDialog,:frmRegisterUI:dlalogReservation" 
+                                                             />   
+
+
+
+
+                                        </div>  
+
+                                    </div>
+                                </div>
+                            </p:dialog>   
+
+                        </div>
+                    </div>
+                </div>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

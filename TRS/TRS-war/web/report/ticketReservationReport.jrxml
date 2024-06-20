@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticketReservationReport" language="groovy" pageWidth="1100" pageHeight="1000" columnWidth="1060" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="072689f6-c62d-43c3-a82e-8b6cf4fa24a1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="15"/>
+	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+           ts.firstName AS first_name,
+           ts.fatherName AS middle_name,
+           ts.phoneNo AS contact,
+           ts.ticketNo AS ticketNo,
+           rt.routeName   AS routeName,
+           bus.busNumber AS busNo,
+           busd.seatNo   AS seatNo,
+           sc.scheduleDate   AS scheduleDate,
+           sc.despatureTime   AS despatureTime,
+           ts.dipositSlipNo   AS dipositSlipNo,
+           ts.ReservDate   AS paymentDate,
+           sc.price   AS Amount
+
+
+
+
+FROM ticketreservationtbl AS ts
+INNER JOIN bustbl_detal AS busd ON ts.busSeatNoId = busd.detailId
+INNER JOIN bustbl AS bus ON busd.busId = bus.id
+
+INNER JOIN scheduletbl AS sc ON bus.id = sc.busId
+INNER JOIN routetbl AS rt ON sc.routeId = rt.routerId
+ WHERE
+       sc.scheduleDate BETWEEN $P{fromDate} and $P{toDate} ;]]>
+	</queryString>
+	<field name="first_name" class="java.lang.String"/>
+	<field name="middle_name" class="java.lang.String"/>
+	<field name="contact" class="java.lang.String"/>
+	<field name="ticketNo" class="java.lang.String"/>
+	<field name="routeName" class="java.lang.String"/>
+	<field name="busNo" class="java.lang.String"/>
+	<field name="seatNo" class="java.lang.String"/>
+	<field name="scheduleDate" class="java.lang.String"/>
+	<field name="despatureTime" class="java.lang.String"/>
+	<field name="dipositSlipNo" class="java.lang.String"/>
+	<field name="paymentDate" class="java.lang.String"/>
+	<field name="Amount" class="java.lang.Double"/>
+	<variable name="totalAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Amount}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="159" splitType="Stretch">
+			<image>
+				<reportElement uuid="ad8ae937-f32e-4a19-846f-b93bb6bd6f65" x="428" y="10" width="100" height="73"/>
+				<imageExpression><![CDATA["C:\\Users\\AdG\\Desktop\\student proj new\\TRS\\icon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="2b8edca5-7519-4039-b7dc-fbed715e0446" x="290" y="117" width="406" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Online Ticket Reservation System]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2b8edca5-7519-4039-b7dc-fbed715e0446" x="290" y="84" width="406" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ZUMEN BUS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="544df88e-30ce-4575-a371-cc1c2d559dd8" mode="Transparent" x="340" y="2" width="71" height="20" forecolor="#000000" backcolor="#006699"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[From Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="544df88e-30ce-4575-a371-cc1c2d559dd8" mode="Transparent" x="540" y="2" width="70" height="20" forecolor="#000000" backcolor="#006699"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[To Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d6175667-53b7-4e32-86e6-d971a68b92a0" x="418" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dddfdf84-7f2b-44e6-b443-bd75d6ad5df1" x="619" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="202" y="0" width="93" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[middle_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="112" y="0" width="90" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[first_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="63" y="0" width="49" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[S/No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="385" y="0" width="94" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ticketNo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="295" y="0" width="90" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[contact]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="618" y="0" width="94" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[busNo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="714" y="0" width="90" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[seatNo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="479" y="0" width="139" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[routeName]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="804" y="0" width="94" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[scheduleDate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="926750b3-919d-4b42-8c5b-659ae0737039" mode="Opaque" x="898" y="0" width="94" height="28" forecolor="#000000" backcolor="#999999"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Prevent">
+			<textField>
+				<reportElement uuid="faf2723d-06bd-44f2-88ae-0de663dbb431" mode="Transparent" x="63" y="0" width="49" height="20" backcolor="#CCFFFF"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7597d242-1e46-4296-b18f-edc1d7acbf17" x="202" y="0" width="93" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{middle_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf6772d2-b06d-4342-abdb-b27e56938616" x="112" y="0" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf6772d2-b06d-4342-abdb-b27e56938616" x="296" y="0" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{contact}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7597d242-1e46-4296-b18f-edc1d7acbf17" x="386" y="0" width="94" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ticketNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf6772d2-b06d-4342-abdb-b27e56938616" x="714" y="0" width="90" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{seatNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7597d242-1e46-4296-b18f-edc1d7acbf17" x="804" y="0" width="94" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{scheduleDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cf6772d2-b06d-4342-abdb-b27e56938616" x="481" y="0" width="137" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{routeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7597d242-1e46-4296-b18f-edc1d7acbf17" x="620" y="0" width="94" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{busNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7597d242-1e46-4296-b18f-edc1d7acbf17" x="898" y="0" width="94" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="244" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3937ce81-d5dd-45db-b9cb-24c591133f35" mode="Opaque" x="63" y="0" width="835" height="20" backcolor="#999999"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="278" y="68" width="85" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Prepared By]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="375" y="89" width="120" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="f8b3c9bb-3c60-4335-b597-9e62a6404e36" x="517" y="69" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Approved By]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="278" y="171" width="435" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="613" y="87" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="278" y="88" width="86" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="375" y="129" width="120" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="517" y="89" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="613" y="108" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="517" y="108" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="613" y="132" width="100" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="278" y="108" width="86" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ccf5063-7139-4147-97ec-40d8586adc35" x="278" y="137" width="86" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Comment]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="51bcd2e6-7339-4852-948e-1d5494bec4df" x="375" y="108" width="120" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="a5533b76-bbc8-4725-9d2b-25c81afbff3e" mode="Opaque" x="898" y="0" width="94" height="20" backcolor="#999999"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalAmount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

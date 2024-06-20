@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                xmlns:jsp="http://java.sun.com/JSP/Page">
+    <h:head>
+        <title>Login</title>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/AdminLTE.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+      <!--<h:body class="login-page"  >-->
+      <h:body style="background-image: url('/TRS-war/resources/image/car.png'); background-size: cover;  background-position: center;"  >
+        <h:form id="frmlogin">    
+            <p:growl id="growl1" showDetail="true" autoUpdate="true" severity="information"/>
+            <h:panelGroup id="loginContainer">
+                <div class="login-box" >
+                    <div class="login-logo" style="background-color: yellowgreen">
+                        <div class="login-logo" style=" background-color: white; border-bottom-left-radius: 50% 39%;border-bottom-right-radius: 50% 39%" >
+                            <img src="/TRS-war/resources/image/icon.ico" alt="Zemen Bus" style="height:30px; width:60px; position: relative;"/>
+                            <a href="#" style="color: #3C8DBC">Zemen Bus <b> TRS</b> </a>
+                        </div><!-- /.login-logo -->       
+                    </div>  
+                    <div class="login-box" style="background-color: yellowgreen" >
+                        <div class="login-box-body" style="border-top-left-radius: 50% 30%;border-top-right-radius: 50% 30%">
+                            <h2 class="login-box-msg" style="color: #3C8DBC">Login</h2>                
+                            <div class="form-group has-feedback">
+                                <p:inputText class="form-control" placeholder="User Name" 
+                                             required="true" id="txtUserName" value="#{loginController.userName}"
+                                             requiredMessage="Please Insert User Name" >
+                                    <f:validator  validatorId="securityBean.validator.UserNamePattern" />
+                                </p:inputText>
+                                <p:message   for="txtUserName" id="inlineMessage1"  />
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <p:inputText class="form-control" id="txtPassword" placeholder="Password" 
+                                             type="password" value="#{loginController.passwordInter}" required="true"
+                                             requiredMessage="Please Insert Password"/>
+                                <p:message   for="txtPassword" id="inlineMessage2" />
+                                    <p:outputLabel   value="#{loginController.invalidUserNameAndPassword}"/>
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            </div> 
+                            <div class="row">
+                                <div class="col-xs-12"> 
+                                    <div class="col-xs-6"> 
+                                      
+                                        <p:commandButton id="btnlogin" value="Signin" class="btn btn-primary"  style="width: 140px"
+                                                         update="@this,:frmlogin" process="@this,frmlogin"
+                                                     
+                                                         action="#{loginController.validateUsernamePassword}"/>
+                                             <!--action="{loginController.login}"/>-->
+                                    </div>
+                                    <div class="col-xs-6">    
+                                        <p:commandButton id="btnSignup" value="Sign Up" class="btn btn-primary" immediate="true"  style="width: 140px"
+                                                          process="@this"
+                                                         action="#{loginController.signUp()}"/>
+                                    </div>
+
+                                </div><!-- /.col -->    
+                            </div>
+                        </div>
+                    </div><!-- /.login-box-body -->
+                </div><!-- /.login-box -->
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+
+</ui:composition>

@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/templates/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    
+
+    <ui:define name="navigaion_content">  
+        <ul  class="nav " id="myTab">
+            <!-- search form -->  
+            <li class="treeview">         
+                <a href="../HomePage.xhtml"><i class="fa fa-home"></i><span> Home </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="busPage.xhtml"><i class="fa fa-bus"></i><span> Bus Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="cityPage.xhtml"><i class="fa fa-star"></i><span> City Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="routePage.xhtml"><i class="fa fa-road"></i><span> Rout Registration  </span></a>
+            </li>
+
+            <li class="#{loginController.treeviewUser}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle-o"></i><span> View Schedule  </span></a>
+            </li>
+
+            <li class="#{loginController.treeview}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle"></i><span>  Schedule Registration   </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="ticketReservationPage.xhtml"><i class="fa fa-ticket"></i><span> Ticket Reservation   </span></a>
+            </li>    
+
+            <li class="#{loginController.treeview}">       
+                <a href="../AdminUser.xhtml"><i class="fa fa-user"></i><span> User Registration </span></a>
+            </li>
+            <li class="#{loginController.treeviewUser}">       
+                <a href="../AdminUser.xhtml" ><i class="fa fa-user"></i><span> Profile </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="contactUs.xhtml" ><i class="fa fa-comment"></i><span> Contact Us </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="ReportPage.xhtml"><i class="fa fa-file-o"></i><span> Generate Report</span></a>
+            </li>
+        </ul>   
+
+    </ui:define>
+    <ui:define name="contents">   
+        <h:form id="frmRegisterUI"> 
+
+
+            <p:growl id="growl" showDetail="true" severity="information,fatal" autoUpdate="true" />
+            <h:panelGroup style="border: 0px; background-color: transparent" id="registerUI" >
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <strong>Route Registration </strong></h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row"> 
+                            <div class="col-md-12" > 
+                                <h:panelGroup id="pnl">
+                                    <div class="form-horizontal  col-sm-12">   
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtDepature"  class="control-label col-sm-2" value="Depature City" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+
+                                                <!--                                                <p:autoComplete id="txtDepature"   style="width: 100%;"                                                                                    
+                                                                                                                value="{routeController.citytbl.cityName}"
+                                                                                                                placeholder="Depature City" 
+                                                                                                                completeMethod="{routeController.searchCityistNew}" 
+                                                                                                                var="cityNameTbl" itemValue="{cityNameTbl.cityName}" itemLabel="{cityNameTbl}"  
+                                                                                                                emptyMessage="No data " forceSelection="true" 
+                                                                                                                scrollHeight="200"  >  
+                                                
+                                                                                                    <p:column headerText=" Name:" >
+                                                                                                        <h:outputText value="{cityNameTbl.cityName}"/>
+                                                                                                    </p:column>
+                                                                                                    <p:ajax  event="itemSelect" listener="{routeController.getSelectDespatureCityInfo}" partialSubmit="true"
+                                                                                                             process="@this" 
+                                                                                                             update="@this"/>   
+                                                
+                                                                                                </p:autoComplete>  -->
+
+
+                                                <p:selectOneMenu id="txtDepature" 
+                                                                 valueChangeListener="#{routeController.depatureTypeEvent}"
+                                                                 value="#{routeController.citytbl.cityName}"
+                                                                 required="true" requiredMessage="Depature City is not Empty }"
+                                                                 style="width: 100%;"  >
+
+                                                    <f:selectItems id="elTy" value="#{routeController.depatureTypeList}"/>
+                                                    <p:ajax  event="change" process="@this" update="txtDepature" /> 
+
+                                                </p:selectOneMenu>
+                                                <p:message for="txtDepature" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtDestination"  class="control-label col-sm-2" value="Destination City" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <!--                                                <p:autoComplete id="txtDestination"   style="width: 100%;"                                                                                    
+                                                                                                                value="{routeController.citytbl2.cityName}"
+                                                                                                                placeholder="Destination City" immediate="true"
+                                                                                                                completeMethod="{routeController.searchDestinationCityList}" 
+                                                                                                                var="busTblList" itemValue="{busTblList.cityName}" itemLabel="{busTblList}"  
+                                                                                                                emptyMessage="No data " forceSelection="true"  
+                                                                                                                scrollHeight="200"  >  
+                                                
+                                                                                                    <p:column headerText=" Name:" >
+                                                                                                        <h:outputText value="{busTblList.cityName}"/>
+                                                                                                    </p:column>
+                                                                                                    <p:ajax  event="itemSelect" listener="{routeController.getSelectDestinationCityInfo}" partialSubmit="true"
+                                                                                                             process="@this" 
+                                                                                                             update="@this"/>   
+                                                
+                                                                                                </p:autoComplete>  -->
+
+
+
+
+
+
+                                                <p:selectOneMenu id="txtDestination" 
+                                                                 valueChangeListener="#{routeController.destinationEvent}"
+                                                                 value="#{routeController.citytbl2.cityName}"
+                                                                 required="true" requiredMessage="Destination City is not Empty }"
+                                                                 style="width: 100%;"  >
+
+                                                    <f:selectItems id="Ty" value="#{routeController.depatureTypeList}"/>
+                                                    <p:ajax  event="change" process="@this" update="txtDestination" /> 
+
+                                                </p:selectOneMenu>
+
+
+
+                                                <p:message for="txtDestination" display="icon"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <br></br>
+
+
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-md-12 textBoxMargin6px" > 
+                                <br></br>
+                                <div class="form-group textBoxMargin6px" >
+                                    <h:outputLabel   class="control-label col-sm-2" value=""/>
+                                    <div class="col-sm-4" >   
+                                        <!--disabled not important-->
+                                        <p:commandButton id="btnsave" class="btn  btn-block btn-primary col-sm-2"  style="width: 150px;"
+                                                         value="#{routeController.saveorUpdateBundle}"
+                                                         action="#{routeController.saveUpdate()}"
+                                                         process="@this,pnl " 
+                                                         update=":frmRegisterUI,:frmRegisterUI:tblRoutDetail" 
+                                                         />
+
+
+                                    </div>  
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group textBoxMargin6px">                                      
+                                <div class="col-sm-12">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"> <strong> Route Lists  </strong></h3>
+                                    </div>
+                                    <div class="box box-primary"> 
+                                        <p:dataTable  id="tblRoutDetail" 
+                                                      value="#{routeController.routetblModel}"  resizableColumns="true"
+                                                      var="entityId" rows="25" selectionMode="single"    rowIndexVar="num"
+                                                      selection="#{routeController.selectedItem}" rowKey="#{entityId.routerId}" 
+                                                      paginator="true" paginatorPosition="bottom" editable="true">
+                                            <p:ajax event="rowSelect" listener="#{routeController.getrowData}" update=":frmRegisterUI"  />    >
+                                            <p:column style="width: 70px;">
+                                                <f:facet name="header">
+                                                    <h:outputText value="No." />
+                                                </f:facet>
+                                                <h:outputText value="#{num+1}"/>
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Route  "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.routeName}" />
+                                            </p:column>
+                                            <p:column >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Depature City "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.depatureCityId.cityName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Destination City   "/>
+                                                </f:facet>
+                                                <h:outputText value="#{entityId.destinationCityId.cityName}" />
+                                            </p:column>
+
+                                            <p:column style="width:20%;" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Action "/>
+                                                </f:facet>
+                                                <h:commandLink value="Delete" immediate="true" class="label-danger"
+                                                               action="#{routeController.deleteAction(entityId)}" 
+
+
+                                                               />
+
+                                            </p:column>
+                                        </p:dataTable> 
+
+
+                                        <br></br> 
+                                        <br></br>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

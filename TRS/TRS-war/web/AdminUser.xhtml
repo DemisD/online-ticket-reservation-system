@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/templates/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    
+
+    <ui:define name="navigaion_content">  
+        <!-- search form -->
+
+
+
+
+    </ui:define>
+    <ui:define name="contents">   
+        <h:form id="frmRegisterUI"> 
+            <p:growl id="growl" showDetail="true" severity="information,fatal" autoUpdate="true" />
+            <h:panelGroup style="border: 0px; background-color: transparent" id="registerUI" >
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <strong>User Registration </strong></h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="row"> 
+                            <div class="col-md-12" > 
+                                <h:panelGroup id="pnl">
+                                    <div class="form-horizontal  col-sm-12">   
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtFname"  class="control-label col-sm-2" value="First Name" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtFname"  
+                                                             value="#{userController.usertbl.firstName}"    
+                                                             requiredMessage="required" required="true" /> 
+                                                <p:message for="txtFname" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtLname"  class="control-label col-sm-2" value="last Name" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtLname"  
+                                                             value="#{userController.usertbl.lastName}"    
+                                                             requiredMessage="required" required="true"/> 
+                                                <p:message for="txtLname" display="icon"/>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtPhone"  class="control-label col-sm-2" value="Moble No." />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtPhone"  
+                                                             value="#{userController.usertbl.mobileNo}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtPhone" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtAdrass"  class="control-label col-sm-2" value="Addrass" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtAdrass"  
+                                                             value="#{userController.usertbl.address}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtAdrass" display="icon"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtEmail"  class="control-label col-sm-2" value="Username" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtEmail"  
+                                                             value="#{userController.usertbl.userName}"    
+                                                             requiredMessage="required" required="true"/> 
+                                                <p:message for="txtEmail" display="icon"/>
+                                            </div>
+
+                                            <p:outputLabel for="txtRoleAdmin"  class="control-label col-sm-2" value="Role" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:selectOneMenu id="txtRoleAdmin" value="#{userController.usertbl.role}" rendered="#{userController.renderedRoleAdmin}"  style="width: 100%;"  requiredMessage="required"  required="true">
+                                                    <f:selectItem itemDisabled="true" itemLabel="Select Role" />
+                                                    <f:selectItem  itemLabel="Admin" itemValue="Admin"  />
+                                                    <f:selectItem itemLabel="Passanger" itemValue="User" />
+                                                </p:selectOneMenu>
+                                                <p:selectOneMenu id="txtRoleUser" value="#{userController.usertbl.role}" rendered="#{userController.renderedRoleUser}"  style="width: 100%;"  requiredMessage="required"  required="true">
+                                                    <f:selectItem itemDisabled="true" itemLabel="Select Role" />
+                                                    <f:selectItem itemLabel="Passanger" itemValue="User" />
+                                                </p:selectOneMenu>
+                                                <p:message for="txtRoleAdmin" display="icon"/>
+                                            </div>   
+
+                                        </div>
+
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtpswd"  class="control-label col-sm-2" value="Password" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtpswd"  type="password"
+                                                             value="#{userController.password}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtpswd" display="icon"/>
+                                            </div>
+
+                                            <p:outputLabel for="txtrpswd"  class="control-label col-sm-2" value="Confirm Password" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtrpswd"  type="password"
+                                                             value="#{userController.confirmPassword}"    
+                                                             requiredMessage="required"  > 
+                                                    <p:ajax process="@this,txtpswd" 
+                                                            listener="#{userController.getConiformPasswored}"
+                                                            event="change" update="btnsave, txtmessage"/>
+
+                                                </p:inputText>
+                                                <p:outputLabel id="txtmessage"  value="#{userController.confirmMessage}"    />
+                                                <p:message for="txtrpswd" display="icon"/>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+
+
+
+                                    <br></br>
+
+
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-md-12 textBoxMargin6px" > 
+                                <br></br>
+                                <div class="form-group textBoxMargin6px" >
+                                    <h:outputLabel   class="control-label col-sm-2" value=""/>
+                                    <div class="col-sm-4" >   
+                                        <!--disabled not important-->
+                                        <p:commandButton id="btnsave"  disabled="#{userController.disableSaveButton}" class="btn  btn-block btn-primary col-sm-2"  style="width: 150px;"
+                                                         value="#{userController.saveorUpdateBundle}"
+                                                         action="#{userController.saveUpdate()}"
+                                                         process="@this,pnl " 
+                                                         update=":frmRegisterUI,:frmRegisterUI:tblDetail" 
+                                                         />
+
+
+                                    </div>  
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group textBoxMargin6px">                                      
+                                <div class="col-sm-12">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"> <strong> List of Users  </strong></h3>
+                                    </div>
+                                    <div class="box box-primary"> 
+                                        <!--                                        Admin list table-->
+                                        <p:dataTable  id="tblDetail"  rendered="#{userController.renderedRoleAdmin}"
+                                                      value="#{userController.tblModel}"  resizableColumns="true"
+                                                      var="tblId" rows="25" selectionMode="single"    rowIndexVar="num"
+                                                      selection="#{userController.selectedItem}" rowKey="#{tblId.userId}" 
+                                                      paginator="true" paginatorPosition="bottom" editable="true">
+                                            <p:ajax event="rowSelect" listener="#{userController.getrowData}" update=":frmRegisterUI"  />    >
+                                            <p:column style="width: 70px;">   
+                                                <f:facet name="header">
+                                                    <h:outputText value="No." />
+                                                </f:facet>
+                                                <h:outputText value="#{num+1}"/>
+                                            </p:column>
+                                            <p:column   filterMatchMode="contains" filterBy="#{tblId.firstName}">
+                                                <f:facet name="header">
+                                                    <h:outputText value="First Name "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.firstName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="last Name "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.lastName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Moble No. "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.mobileNo}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Addrass "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.address}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="UserName "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.userName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Password "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.plainTaxtPassword}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Role "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.role}" />
+                                            </p:column>
+
+                                            <p:column style="width:10%;" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Action "/>
+                                                </f:facet>
+                                                <h:commandLink value="Delete" immediate="true" class="label-danger"
+                                                               action="#{userController.deleteAction(tblId)}"    />
+                                            </p:column>
+                                        </p:dataTable> 
+
+                                        <!--                                             User or passenger list table-->
+
+                                        <p:dataTable  id="tblUserDetail"  rendered="#{userController.renderedRoleUser}"
+                                                      value="#{userController.userDataModel}"  resizableColumns="true"
+                                                      var="tblId" rows="25" selectionMode="single"    rowIndexVar="num"
+                                                      selection="#{userController.selectedItem}" rowKey="#{tblId.userId}" 
+                                                      paginator="true" paginatorPosition="bottom" editable="true">
+                                            <p:ajax event="rowSelect" listener="#{userController.getrowData}" update=":frmRegisterUI"  />    >
+                                            <p:column style="width: 70px;">   
+                                                <f:facet name="header">
+                                                    <h:outputText value="No." />
+                                                </f:facet>
+                                                <h:outputText value="#{num+1}"/>
+                                            </p:column>
+                                            <p:column   >
+                                                <f:facet name="header">
+                                                    <h:outputText value="First Name "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.firstName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="last Name "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.lastName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Moble No. "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.mobileNo}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Addrass "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.address}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="UserName "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.userName}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Password "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.plainTaxtPassword}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Role "/>
+                                                </f:facet>
+                                                <h:outputText value="#{tblId.role}" />
+                                            </p:column>
+
+                                            <p:column style="width:10%;" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Action "/>
+                                                </f:facet>
+                                                <h:commandLink value="Delete" immediate="true" class="label-danger"
+                                                               action="#{userController.deleteAction(tblId)}"    />
+                                            </p:column>
+                                        </p:dataTable> 
+                                        <br></br> 
+                                        <br></br>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/templates/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">    
+
+    <ui:define name="navigaion_content">      
+
+        <ul  class="nav " id="myTab">
+            <!-- search form -->  
+            <li class="treeview">         
+                <a href="../HomePage.xhtml"><i class="fa fa-home"></i><span> Home </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="busPage.xhtml"><i class="fa fa-bus"></i><span> Bus Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="cityPage.xhtml"><i class="fa fa-star"></i><span> City Registration </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="routePage.xhtml"><i class="fa fa-road"></i><span> Rout Registration  </span></a>
+            </li>
+
+            <li class="#{loginController.treeviewUser}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle-o"></i><span> View Schedule  </span></a>
+            </li>
+
+            <li class="#{loginController.treeview}">       
+                <a href="schedulePage.xhtml"><i class="fa fa-times-circle"></i><span>  Schedule Registration   </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="ticketReservationPage.xhtml"><i class="fa fa-ticket"></i><span> Ticket Reservation   </span></a>
+            </li>    
+
+            <li class="#{loginController.treeview}">       
+                <a href="../AdminUser.xhtml"><i class="fa fa-user"></i><span> User Registration </span></a>
+            </li>
+            <li class="#{loginController.treeviewUser}">       
+                <a href="../AdminUser.xhtml" ><i class="fa fa-user"></i><span> Profile </span></a>
+            </li>
+            <li class="treeview">       
+                <a href="contactUs.xhtml" ><i class="fa fa-comment"></i><span> Contact Us </span></a>
+            </li>
+            <li class="#{loginController.treeview}">       
+                <a href="ReportPage.xhtml"><i class="fa fa-file-o"></i><span> Generate Report</span></a>
+            </li>
+        </ul>  
+
+    </ui:define>
+    <ui:define name="contents">   
+        <h:form id="frmRegisterUI"> 
+            <p:growl id="growl" showDetail="true" severity="information,fatal" autoUpdate="true" />
+            <h:panelGroup style="border: 0px; background-color: transparent" id="registerUI" >
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"> <strong>Contact US </strong></h3>
+                    </div>  
+                    <div style=" margin-left: 40% " class="box-header with-border ">
+                        <h3 class="box-title"> <strong>We always want to hear your feedback. </strong></h3>
+
+
+
+                    </div>
+                    <div style=" margin-left: 50% " class="box-header with-border ">
+
+                        <h3 class="box-title"> <strong>Customer Service: </strong></h3> <br></br>
+
+                        <li><a href=""><i class="fa fa-phone"></i> 0116151011  /   0983252525</a></li>
+                        <li><a href=""><i class="fa fa-fax"></i> 6162</a></li>
+                    </div>           
+
+                    <div class="box-body">
+                        <div class="row"> 
+                            <div class="col-md-12" > 
+                                <h:panelGroup id="pnl">
+                                    <div class="form-horizontal  col-sm-12">   
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtName"  class="control-label col-sm-2" value="Name" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtName"  
+                                                             value="#{contuctUs.contactus.name}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtName" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtEmail"  class="control-label col-sm-2" value="Email" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtEmail"  type="email"
+                                                             value="#{contuctUs.contactus.emaile}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtEmail" display="icon"/>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="form-horizontal col-md-12"> 
+                                            <p:outputLabel for="txtphone"  class="control-label col-sm-2" value="Phone No." />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputText id="txtphone"  
+                                                             value="#{contuctUs.contactus.phone}"    
+                                                             requiredMessage="required" /> 
+                                                <p:message for="txtphone" display="icon"/>
+                                            </div>
+                                            <p:outputLabel for="txtMsg"  class="control-label col-sm-2" value="Comments" />
+                                            <div class="col-sm-4 textBoxMargin6px">
+                                                <p:inputTextarea  id="txtMsg"  
+                                                                  value="#{contuctUs.contactus.message}"  autoResize="false" 
+                                                                  />
+                                                <p:message for="txtMsg" display="icon"/>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+
+
+                                    <br></br>
+
+
+                                </h:panelGroup>
+                            </div>
+                            <div class="col-md-12 textBoxMargin6px" > 
+                                <br></br>
+                                <div class="form-group textBoxMargin6px" >
+                                    <h:outputLabel   class="control-label col-sm-2" value=""/>
+                                    <div class="col-sm-4" >   
+                                        <!--disabled not important-->
+                                        <p:commandButton id="btnsave" class="btn  btn-block btn-primary col-sm-2"  style="width: 150px;"
+                                                         value="#{contuctUs.saveorUpdateBundle}"
+                                                         action="#{contuctUs.saveUpdate()}"
+                                                         process="@this,pnl " 
+                                                         update=":frmRegisterUI,:frmRegisterUI:tblCandidateDetail" 
+                                                         />
+
+
+                                    </div>  
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group textBoxMargin6px">                                      
+                                <div class="col-sm-12">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title"> <strong> List of Feedback  </strong></h3>
+                                    </div>
+                                    <div class="box box-primary">   
+                                        <p:dataTable  id="tblCandidateDetail" 
+                                                      value="#{contuctUs.contactusModel}"  resizableColumns="true"
+                                                      var="iInfo" rows="25" selectionMode="single"    rowIndexVar="num"
+                                                      selection="#{contuctUs.selectedItem}" rowKey="#{iInfo.id}" 
+                                                      paginator="true" paginatorPosition="bottom" editable="true">
+                                            <p:ajax event="rowSelect" listener="#{contuctUs.getrowData}" update=":frmRegisterUI"  />    >
+                                            <p:column style="width: 70px;">
+                                                <f:facet name="header">
+                                                    <h:outputText value="No." />
+                                                </f:facet>
+                                                <h:outputText value="#{num+1}"/>
+                                            </p:column>
+                                            <p:column   >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Name "/>
+                                                </f:facet>
+                                                <h:outputText value="#{iInfo.name}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Email "/>
+                                                </f:facet>
+                                                <h:outputText value="#{iInfo.emaile}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Phone "/>
+                                                </f:facet>
+                                                <h:outputText value="#{iInfo.phone}" />
+                                            </p:column>
+                                            <p:column  >
+                                                <f:facet name="header">
+                                                    <h:outputText value="feedback "/>
+                                                </f:facet>
+                                                <h:outputText value="#{iInfo.message}" />
+                                            </p:column>
+                                            <p:column style="width:20%;" >
+                                                <f:facet name="header">
+                                                    <h:outputText value="Action "/>
+                                                </f:facet>
+                                                <h:commandLink value="Delete" immediate="true" class="label-danger"
+                                                               action="#{contuctUs.deleteAction(iInfo)}" 
+
+
+                                                               />
+                                                <!--                                                    <p:commandButton value="Delete" icon="ui-icon-circle-close"
+                                                                                                                     actionListener="{busController.deleteRow(iInfo.id)}" 
+                                                                                                                     process="@this " 
+                                                                                                                     update="tblCandidateDetail"/>  -->
+                                            </p:column>
+                                        </p:dataTable> 
+
+
+                                        <br></br> 
+                                        <br></br>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>
