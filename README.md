@@ -7,11 +7,17 @@ Functionality performed by online ticket reservation system for zemen bus:
 These are the functionality performed by the admin users.
 
 •	Login for Admin
+
 •	Forgot password for Admin
+
 •	Edit Profile For Admin
+
 •	Change Password For Admin
+
 •	Logout Functionality
+
 •	Dashboard for Admin User
+
 •	Manage Bus
 o	Adding New Bus
 o	Edit the Exiting Bus
