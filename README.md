@@ -6,12 +6,15 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 
 #### These are the functionality performed by the admin users.
 
+- Login for Admin
+- Create new admin user.
 - Forgot password for Admin.
-- Configurable syntax! You can add new rules and even replace existing ones.
-- High speed.
-•	Login for Admin
+- Edit Profile For Admin.
+- Change Password For Admin.
+- Logout Functionality
 
-•	Forgot password for Admin
+
+
 
 •	Edit Profile For Admin
 
