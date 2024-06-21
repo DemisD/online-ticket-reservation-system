@@ -1,5 +1,5 @@
 # Online Ticket Reservation System 
-__[online ticket reservation system for zemen bus](https://github.com/DemisD/online-ticket-reservation-system)__
+##__[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/DemisD/online-ticket-reservation-system)__
 
 ## online ticket reservation system for zemen bus
 
