@@ -14,6 +14,7 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 - Logout Functionality
 - Dashboard for Admin User
 - Manage Bus
+    - Marker character change forces new list start:
 
 
 
