@@ -23,19 +23,25 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
   - Edit the Exiting Route
   - View details of the Route
   - Listing of all Route
+- Manage Schedule
+  - Adding New Schedule
+  - Edit the Exiting Schedule
+  - View details of the Schedule
+  - Listing of all Schedule
+- Manage Booking
+  - Adding New Booking
+  - Edit the Exiting Booking
+  - View details of the Booking
+  - Listing of all Booking
+- Reports of the project Bus Ticket Booking System
+   	Report of all Customers
+   o	Report of all Bus
+o	Report of all Route
+o	Report of all Schedule
+o	Report of all Booking
 
 
 
-•	Manage Schedule
-o	Adding New Schedule
-o	Edit the Exiting Schedule
-o	View details of the Schedule
-
-•	Manage Booking
-o	Adding New Booking
-o	Edit the Exiting Booking
-o	View details of the Booking
-o	Listing of all Booking
 •	Reports of the project Bus Ticket Booking System
 o	Report of all Customers
 o	Report of all Bus
