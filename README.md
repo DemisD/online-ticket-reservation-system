@@ -66,6 +66,13 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 #### dashboard Page 
 ![dashboardPage](https://github.com/DemisD/online-ticket-reservation-system/assets/48995115/5b0874e0-31d6-497e-8132-f0dba1fefdf6)
 
+#### Schedule registration page
+
+#### update schedule page
+
+#### Sample Printable Ticket
+
+#### Sample TRS report
 
 
 
