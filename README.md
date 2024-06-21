@@ -1,5 +1,5 @@
 # Online Ticket Reservation System 
-__[online ticket reservation system for zemen bus]([https://github.com/DemisD/online-ticket-reservation-system])__
+__[online ticket reservation system for zemen bus](https://markdown-it.github.io)__
 
 ## online ticket reservation system for zemen bus
 
