@@ -4,7 +4,7 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 
 ### Functionality performed by zemenBus ticket reservation system (TRS):
 
-#### These are the functionality performed by the admin users.
+#### 1 functionality performed by the admin users.
 
 - Login for Admin
 - Create new admin user.
@@ -41,7 +41,7 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
   - Report of all Booking
 
 
-#### Functionality performed by Passenger:
+#### 2 Functionality performed by Passenger:
 - Passenger Registration: Passenger can register on website using the registration form.
 - Passenger Login: This is the login form, from where passenger can login into the system
 - Passenger Booking: This is passenger booking form.
