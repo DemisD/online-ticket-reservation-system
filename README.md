@@ -34,29 +34,21 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
   - View details of the Booking
   - Listing of all Booking
 - Reports of the project Bus Ticket Booking System
-   	Report of all Customers
-   o	Report of all Bus
-o	Report of all Route
-o	Report of all Schedule
-o	Report of all Booking
+  - Report of all Customers
+  - Report of all Bus
+  - Report of all Route
+  - Report of all Schedule
+  - Report of all Booking
 
 
-
-•	Reports of the project Bus Ticket Booking System
-o	Report of all Customers
-o	Report of all Bus
-o	Report of all Route
-o	Report of all Schedule
-o	Report of all Booking
-
-Functionality performed by Passenger:
-•	Passenger Registration: Passenger can register on website using the registration form.
-•	Passenger Login: This is the login form, from where passenger can login into the system
-•	Passenger Booking: This is passenger booking form.
-•	Passenger Payment: This is the passenger payment form for the Bus Ticket booking where passenger will be able to make payment.
-•	Passenger Feedback: This is customer feedback form where customer can give feedback of the Bus Ticket.
-•	Passenger Booking Confirmation: This is the passenger booking confirmation form where passenger will be able to confirm his booking. 
-•	Change Password: This is the change password module from where passenger change his account password.
+#### Functionality performed by Passenger:
+- Passenger Registration: Passenger can register on website using the registration form.
+- Passenger Login: This is the login form, from where passenger can login into the system
+- Passenger Booking: This is passenger booking form.
+- Passenger Payment: This is the passenger payment form for the Bus Ticket booking where passenger will be able to make payment.
+- Passenger Feedback: This is customer feedback form where customer can give feedback of the Bus Ticket.
+- Passenger Booking Confirmation: This is the passenger booking confirmation form where passenger will be able to confirm his booking. 
+- Change Password: This is the change password module from where passenger change his account password.
 
 Technology Used in the project Bus Ticket Booking System
 
