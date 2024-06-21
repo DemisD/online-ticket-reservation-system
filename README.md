@@ -6,7 +6,7 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 
 #### These are the functionality performed by the admin users.
 
-- Follows the __[CommonMark spec](http://spec.commonmark.org/)__ + adds syntax extensions & sugar (URL autolinking, typographer).
+- Forgot password for Admin.
 - Configurable syntax! You can add new rules and even replace existing ones.
 - High speed.
 •	Login for Admin
