@@ -58,6 +58,9 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 - Glassfish server: is a server, which let us to use client computer as client and server.
 - Edraw max:  it is a software which used to draw the diagrams Such as sequence diagram , uiscase diagram
 
+### Screen Shoot
+![loginPage](https://github.com/DemisD/online-ticket-reservation-system/assets/48995115/fcc3295a-4aaa-4d29-a66a-78a5ef1ac01f)
+
 
 
 
