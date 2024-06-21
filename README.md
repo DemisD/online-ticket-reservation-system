@@ -2,7 +2,7 @@
 __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/DemisD/online-ticket-reservation-system)__
 
 
-### Functionality performed by ticket reservation system for zemen bus:
+### Functionality performed by zemenBus ticket reservation system (TRS):
 
 #### These are the functionality performed by the admin users.
 
