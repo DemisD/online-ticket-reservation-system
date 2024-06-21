@@ -19,8 +19,11 @@ These are the functionality performed by the admin users.
 •	Dashboard for Admin User
 
 •	Manage Bus
+
 o	Adding New Bus
+
 o	Edit the Exiting Bus
+
 o	View details of the Bus
 o	 Listing of all Bus
 •	Manage Route
