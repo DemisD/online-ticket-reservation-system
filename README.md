@@ -2,10 +2,13 @@
 __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/DemisD/online-ticket-reservation-system)__
 
 
-### Functionality performed by online ticket reservation system for zemen bus:
+### Functionality performed by ticket reservation system for zemen bus:
 
 #### These are the functionality performed by the admin users.
 
+- Follows the __[CommonMark spec](http://spec.commonmark.org/)__ + adds syntax extensions & sugar (URL autolinking, typographer).
+- Configurable syntax! You can add new rules and even replace existing ones.
+- High speed.
 •	Login for Admin
 
 •	Forgot password for Admin
