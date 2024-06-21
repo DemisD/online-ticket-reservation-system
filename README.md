@@ -12,17 +12,13 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 - Edit Profile For Admin.
 - Change Password For Admin.
 - Logout Functionality
+- Dashboard for Admin User
+- Manage Bus
 
 
 
 
-•	Edit Profile For Admin
 
-•	Change Password For Admin
-
-•	Logout Functionality
-
-•	Dashboard for Admin User
 
 •	Manage Bus
 
