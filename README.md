@@ -47,18 +47,16 @@ __[Online Ticket Reservation System (TRS) for Zemen Bus](https://github.com/Demi
 - Passenger Booking: This is passenger booking form.
 - Passenger Payment: This is the passenger payment form for the Bus Ticket booking where passenger will be able to make payment.
 - Passenger Feedback: This is customer feedback form where customer can give feedback of the Bus Ticket.
-- Passenger Booking Confirmation: This is the passenger booking confirmation form where passenger will be able to confirm his booking. 
 - Change Password: This is the change password module from where passenger change his account password.
 
-Technology Used in the project Bus Ticket Booking System
+### To implement the Bus Ticket Booking System we used the following Technology
 
-  We have developed this project using the below technology
-•   Java (jdk8.1.6):- The Java Development Kit (JDK) is a crucial tool for developers working with Java. It includes the software and tools needed to compile, debug, and run applications written in the Java programming language.
-•	NetBeans 8.2 IDE. NetBeans 8.2 IDE is an integrated development environment primarily used for Java development
-•	MySQL 5.0:- MySQL is a widely-used open-source relational database management system (RDBMS). It is known for its reliability, robustness, and ease of use, making it a popular choice for web applications and other data-driven projects.
-•	JSF Prime faces 5.0 :-  JSF (JavaServer Faces) and PrimeFaces are commonly used together in Java web development to create rich user interfaces.
-•	Glassfish server: is a server, which let us to use client computer as client and server. 
-•	Edraw max:  it is a software which used to draw the diagrams Such as sequence diagram , uiscase diagram
+- Java (jdk8.1.6):- The Java Development Kit (JDK) is a crucial tool for developers working with Java. It includes the software and tools needed to compile, debug, and run applications written in the Java programming language.
+- NetBeans 8.2 IDE. NetBeans 8.2 IDE is an integrated development environment primarily used for Java development
+- MySQL 5.0:- MySQL is a widely-used open-source relational database management system (RDBMS). It is known for its reliability, robustness, and ease of use, making it a popular choice for web applications and other data-driven projects.
+- JSF Prime faces 5.0 :-  JSF (JavaServer Faces) and PrimeFaces are commonly used together in Java web development to create rich user interfaces.
+- Glassfish server: is a server, which let us to use client computer as client and server.
+- Edraw max:  it is a software which used to draw the diagrams Such as sequence diagram , uiscase diagram
 
 
 
